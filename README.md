@@ -6,9 +6,9 @@ A portable, token-optimized cross-agent engineering guardrail & skill kit. Works
 
 ## Quick Install
 
-### Recommended (Corporate / IT-Safe — Clone & Inspect Locally)
+### Recommended (Clone & Run Locally)
 
-Clone once, then run the local installer against any project (avoids piping remote URLs into `iex`/`bash`, which corporate EDR tools often flag):
+Clone once, then run the local installer against any project:
 
 ```powershell
 git clone https://github.com/pjgrspe/bastion.git
@@ -20,7 +20,7 @@ Or install globally for Antigravity + Claude Code:
 .\bastion\install.ps1 -Scope Global
 ```
 
-### Quick Remote One-Liners (Personal Machines Only)
+### Quick Remote One-Liners
 
 **Windows (PowerShell):**
 ```powershell
