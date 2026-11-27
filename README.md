@@ -67,4 +67,4 @@ Works as a native slash command in **Claude Code** (`.claude/commands/bastion.md
 
 ## Companion Dashboard
 
-Pair with **[Agent Manager](https://github.com/pjgrspe/agent-manager)** for a multi-project command center that reads `.agents/status.md` and auto-syncs Git recaps across all your repos.
+Pair with **[Citadel](https://github.com/pjgrspe/citadel)** for a multi-project Control Center that reads `.agents/status.md`, visualizes commit velocity, and auto-syncs Git recaps across all your repos.
