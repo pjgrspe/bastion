@@ -52,6 +52,7 @@ install_skill_to_dir() {
   install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$skill_dir/references/project-learnings-template.md" "true"
   install_file ".agents/skills/$SKILL_NAME/references/skill-audit.md" "$skill_dir/references/skill-audit.md" "true"
   install_file ".agents/skills/$SKILL_NAME/references/claude-harness.md" "$skill_dir/references/claude-harness.md" "true"
+  install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$skill_dir/references/status-template.md" "true"
 }
 
 echo "Installing Anti-Slop Kit (scope: $SCOPE)..."
@@ -62,12 +63,13 @@ if [[ "$SCOPE" == "project" ]]; then
   install_skill_to_dir "$TARGET_DIR/.agents/skills/$SKILL_NAME"
   install_skill_to_dir "$TARGET_DIR/.claude/skills/$SKILL_NAME"
   install_file ".claude/commands/anti-slop.md" "$TARGET_DIR/.claude/commands/anti-slop.md" "true"
-  # Never overwrite project-specific learnings, even with --force
+  # Never overwrite project-specific learnings or status, even with --force
   install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$TARGET_DIR/.agents/project-learnings.md" "false"
+  install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$TARGET_DIR/.agents/status.md" "false"
   echo ""
   echo "Done! Installed into $TARGET_DIR"
-  echo "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents/project-learnings.md are preserved."
-  echo "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | status"
+  echo "Safe mode: existing AGENTS.md, CLAUDE.md, .agents/project-learnings.md, and .agents/status.md are preserved."
+  echo "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | recap | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"
   install_skill_to_dir "$HOME/.claude/skills/$SKILL_NAME"

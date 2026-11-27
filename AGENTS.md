@@ -24,4 +24,4 @@ Applies to all coding agents (Antigravity, Claude Code, Cursor, Codex).
 ## Done Gate & Token Discipline
 - Run the repo's `verify` command (use quiet/summary flags first; inspect full logs only on failure) and confirm zero errors + runtime behavior.
 - Report commands run + observed results. Do not re-run passing checks without new edits.
-- Load `.agents/skills/anti-slop-engineering/SKILL.md` **only** for `/anti-slop <init|harden|fix|guard|learn|audit|discover|status>` commands or non-trivial multi-step changes.
+- Load `.agents/skills/anti-slop-engineering/SKILL.md` **only** for `/anti-slop <init|harden|fix|guard|learn|audit|discover|recap|status>` commands or non-trivial multi-step changes.

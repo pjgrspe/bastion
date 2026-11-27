@@ -54,7 +54,8 @@ Works as a native slash command in **Claude Code** (`.claude/commands/anti-slop.
 | `/anti-slop learn [note]` | Auto-discover repo profile or safely append a learning to `.agents/project-learnings.md` |
 | `/anti-slop audit` | Non-destructive audit of installed skills (stale/overlap/bloat) + build the Skill Map |
 | `/anti-slop discover [goal]` | Search & vet reputable skill repos/registries for this project's stack & goals (approval-gated) |
-| `/anti-slop status` | Read-only summary of your repo's `verify` command, promoted guardrails, and active skills |
+| `/anti-slop recap` | Update `.agents/status.md` (State, Last Recap, Current Plan, Blockers) for Manager overview |
+| `/anti-slop status` | Read-only summary of your repo's `.agents/status.md` and `.agents/project-learnings.md` |
 
 ---
 

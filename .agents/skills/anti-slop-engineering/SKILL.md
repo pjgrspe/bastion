@@ -17,7 +17,8 @@ Route user commands directly to one mode without asking:
 - `/anti-slop learn [note]` → **Mode E** (Discover profile or safely log learning)
 - `/anti-slop audit` → **Mode F** (Audit installed skills & build Skill Map)
 - `/anti-slop discover [goal]` → **Mode F** (Search & vet external skills/repos for this project)
-- `/anti-slop status` → Read-only summary of `.agents/project-learnings.md`
+- `/anti-slop recap` → Update `.agents/status.md` (State, Last Recap, Current Plan, Blockers) from recent git commits + verify result
+- `/anti-slop status` → Read-only summary of `.agents/status.md` & `.agents/project-learnings.md`
 
 ## Token & Context Rules (Read First)
 - **Skip this skill** for simple Q&A or trivial 1-file edits covered by `AGENTS.md`.

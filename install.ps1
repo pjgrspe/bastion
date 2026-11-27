@@ -16,7 +16,8 @@ $SkillFiles = @(
     "references/stack-guardrails.md",
     "references/project-learnings-template.md",
     "references/skill-audit.md",
-    "references/claude-harness.md"
+    "references/claude-harness.md",
+    "references/status-template.md"
 )
 
 $LocalRoot = if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot "AGENTS.md"))) {
@@ -75,14 +76,16 @@ if ($Scope -eq "Project") {
     Install-SkillToDir -SkillRootDir (Join-Path $resolvedTarget ".claude\skills\$SkillName")
     Install-KitFile -RepoRelativePath ".claude/commands/anti-slop.md" -DestinationPath (Join-Path $resolvedTarget ".claude\commands\anti-slop.md") -AllowOverwrite $true
 
-    # Never overwrite project-specific learnings, even with -Force
+    # Never overwrite project-specific learnings or status, even with -Force
     $learningsPath = Join-Path $resolvedTarget ".agents\project-learnings.md"
     Install-KitFile -RepoRelativePath ".agents/skills/$SkillName/references/project-learnings-template.md" -DestinationPath $learningsPath -AllowOverwrite $false
+    $statusPath = Join-Path $resolvedTarget ".agents\status.md"
+    Install-KitFile -RepoRelativePath ".agents/skills/$SkillName/references/status-template.md" -DestinationPath $statusPath -AllowOverwrite $false
 
     Write-Host ""
     Write-Host "Done! Installed into $resolvedTarget" -ForegroundColor Cyan
-    Write-Host "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents\project-learnings.md are preserved."
-    Write-Host "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | status"
+    Write-Host "Safe mode: existing AGENTS.md, CLAUDE.md, .agents\project-learnings.md, and .agents\status.md are preserved."
+    Write-Host "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | recap | status"
 } else {
     $agySkillDir = Join-Path $HOME ".gemini\config\skills\$SkillName"
     $claudeSkillDir = Join-Path $HOME ".claude\skills\$SkillName"
