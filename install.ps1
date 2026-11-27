@@ -72,6 +72,7 @@ if ($Scope -eq "Project") {
 
     Install-SkillToDir -SkillRootDir (Join-Path $resolvedTarget ".agents\skills\$SkillName")
     Install-SkillToDir -SkillRootDir (Join-Path $resolvedTarget ".claude\skills\$SkillName")
+    Install-KitFile -RepoRelativePath ".claude/commands/anti-slop.md" -DestinationPath (Join-Path $resolvedTarget ".claude\commands\anti-slop.md") -AllowOverwrite $true
 
     # Never overwrite project-specific learnings, even with -Force
     $learningsPath = Join-Path $resolvedTarget ".agents\project-learnings.md"
@@ -80,16 +81,19 @@ if ($Scope -eq "Project") {
     Write-Host ""
     Write-Host "Done! Installed into $resolvedTarget" -ForegroundColor Cyan
     Write-Host "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents\project-learnings.md are preserved."
-    Write-Host "Next: Ask your agent to use the 'anti-slop-engineering' skill to audit/harden or bootstrap this repo."
+    Write-Host "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | status"
 } else {
     $agySkillDir = Join-Path $HOME ".gemini\config\skills\$SkillName"
     $claudeSkillDir = Join-Path $HOME ".claude\skills\$SkillName"
+    $claudeCmdPath = Join-Path $HOME ".claude\commands\anti-slop.md"
 
     Install-SkillToDir -SkillRootDir $agySkillDir
     Install-SkillToDir -SkillRootDir $claudeSkillDir
+    Install-KitFile -RepoRelativePath ".claude/commands/anti-slop.md" -DestinationPath $claudeCmdPath -AllowOverwrite $true
 
     Write-Host ""
     Write-Host "Done! Installed globally for Antigravity and Claude Code." -ForegroundColor Cyan
     Write-Host "  Antigravity: $agySkillDir"
     Write-Host "  Claude Code: $claudeSkillDir"
+    Write-Host "  Slash cmd:   $claudeCmdPath (/anti-slop <cmd>)"
 }

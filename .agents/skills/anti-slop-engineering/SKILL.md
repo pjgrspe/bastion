@@ -8,6 +8,16 @@ description: >-
 
 # Anti-Slop Engineering Playbook
 
+## Commands (`/anti-slop <cmd>`)
+Route user commands directly to one mode without asking:
+- `/anti-slop init` → **Mode A** (Bootstrap new repo)
+- `/anti-slop harden` → **Mode B** (Harden existing repo incrementally)
+- `/anti-slop fix [bug]` → **Mode C** (Reproduce-first bug fix & verify loop)
+- `/anti-slop guard [mistake]` → **Mode D** (Promote mistake to permanent check)
+- `/anti-slop learn [note]` → **Mode E** (Discover profile or safely log learning)
+- `/anti-slop audit` → **Mode F** (Audit installed skills & build Skill Map)
+- `/anti-slop status` → Read-only summary of `.agents/project-learnings.md`
+
 ## Token & Context Rules (Read First)
 - **Skip this skill** for simple Q&A or trivial 1-file edits covered by `AGENTS.md`.
 - **Lazy-load references:** Open [stack-guardrails.md](./references/stack-guardrails.md) only in Mode A/B/D, [project-learnings-template.md](./references/project-learnings-template.md) only when creating `.agents/project-learnings.md`, and [skill-audit.md](./references/skill-audit.md) only in Mode F.

@@ -60,14 +60,17 @@ if [[ "$SCOPE" == "project" ]]; then
   install_file "CLAUDE.md" "$TARGET_DIR/CLAUDE.md" "$FORCE"
   install_skill_to_dir "$TARGET_DIR/.agents/skills/$SKILL_NAME"
   install_skill_to_dir "$TARGET_DIR/.claude/skills/$SKILL_NAME"
+  install_file ".claude/commands/anti-slop.md" "$TARGET_DIR/.claude/commands/anti-slop.md" "true"
   # Never overwrite project-specific learnings, even with --force
   install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$TARGET_DIR/.agents/project-learnings.md" "false"
   echo ""
   echo "Done! Installed into $TARGET_DIR"
   echo "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents/project-learnings.md are preserved."
+  echo "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"
   install_skill_to_dir "$HOME/.claude/skills/$SKILL_NAME"
+  install_file ".claude/commands/anti-slop.md" "$HOME/.claude/commands/anti-slop.md" "true"
   echo ""
-  echo "Done! Installed globally for Antigravity and Claude Code."
+  echo "Done! Installed globally for Antigravity and Claude Code (/anti-slop <cmd>)."
 fi

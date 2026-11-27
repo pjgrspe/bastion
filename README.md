@@ -41,14 +41,19 @@ npx skills add pjgrspe/anti-slop-kit
 
 ---
 
-## Usage Prompts
+## Commands
 
-Once installed in a repo (or globally), tell **any** coding agent:
+Works as a native slash command in **Claude Code** (`.claude/commands/anti-slop.md`) and as a direct command trigger in **Antigravity, Cursor, and Codex**:
 
-- **Existing project:** *"Use the `anti-slop-engineering` skill to audit and harden this repo."*
-- **New project:** *"Use the `anti-slop-engineering` skill to bootstrap guardrails for this project."*
-- **After a bug / agent mistake:** *"Use Mode D of `anti-slop-engineering` to turn this mistake into a permanent lint/type/boundary constraint."*
-- **Audit & orchestrate existing skills:** *"Use Mode F of `anti-slop-engineering` to audit our installed skills for staleness/overlap and build our Skill Map."*
+| Command | What It Does |
+| :--- | :--- |
+| `/anti-slop init` | Bootstrap strict types, linting, boundaries, and a `verify` gate in a **new** project |
+| `/anti-slop harden` | Incrementally harden an **existing** repo without breaking legacy code |
+| `/anti-slop fix <bug>` | Reproduce-first bug fix + empirical runtime verification loop |
+| `/anti-slop guard <mistake>` | Convert a bug or agent mistake into a permanent lint/type/boundary/test rule |
+| `/anti-slop learn [note]` | Auto-discover repo profile or safely append a learning to `.agents/project-learnings.md` |
+| `/anti-slop audit` | Non-destructive audit of installed skills (stale/overlap/bloat) + build the Skill Map |
+| `/anti-slop status` | Read-only summary of your repo's `verify` command, promoted guardrails, and active skills |
 
 ---
 
