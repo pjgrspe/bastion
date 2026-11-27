@@ -1,9 +1,9 @@
 ---
-description: Run CodeGuard engineering workflows (init, harden, fix, guard, learn, audit, discover, recap, status)
+description: Run Bastion engineering workflows (init, harden, fix, guard, learn, audit, discover, recap, status)
 argument-hint: <init|harden|fix|guard|learn|audit|discover|recap|status> [details]
 ---
 
-Load `.agents/skills/codeguard/SKILL.md` (or `.claude/skills/codeguard/SKILL.md` / `~/.claude/skills/codeguard/SKILL.md`) and execute the subcommand requested in `$ARGUMENTS`:
+Load `.agents/skills/bastion/SKILL.md` (or `.claude/skills/bastion/SKILL.md` / `~/.claude/skills/bastion/SKILL.md`) and execute the subcommand requested in `$ARGUMENTS`:
 
 - `init` -> Mode A (Bootstrap new project)
 - `harden` -> Mode B (Harden existing project incrementally)

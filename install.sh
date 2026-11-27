@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_RAW_BASE="https://raw.githubusercontent.com/pjgrspe/codeguard/main"
-SKILL_NAME="codeguard"
+REPO_RAW_BASE="https://raw.githubusercontent.com/pjgrspe/bastion/main"
+SKILL_NAME="bastion"
 SCOPE="project"
 TARGET_DIR="$(pwd)"
 FORCE="false"
@@ -55,25 +55,25 @@ install_skill_to_dir() {
   install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$skill_dir/references/status-template.md" "true"
 }
 
-echo "Installing CodeGuard (scope: $SCOPE)..."
+echo "Installing Bastion (scope: $SCOPE)..."
 
 if [[ "$SCOPE" == "project" ]]; then
   install_file "AGENTS.md" "$TARGET_DIR/AGENTS.md" "$FORCE"
   install_file "CLAUDE.md" "$TARGET_DIR/CLAUDE.md" "$FORCE"
   install_skill_to_dir "$TARGET_DIR/.agents/skills/$SKILL_NAME"
   install_skill_to_dir "$TARGET_DIR/.claude/skills/$SKILL_NAME"
-  install_file ".claude/commands/codeguard.md" "$TARGET_DIR/.claude/commands/codeguard.md" "true"
+  install_file ".claude/commands/bastion.md" "$TARGET_DIR/.claude/commands/bastion.md" "true"
   # Never overwrite project-specific learnings or status, even with --force
   install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$TARGET_DIR/.agents/project-learnings.md" "false"
   install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$TARGET_DIR/.agents/status.md" "false"
   echo ""
-  echo "Done! Installed CodeGuard into $TARGET_DIR"
+  echo "Done! Installed Bastion into $TARGET_DIR"
   echo "Safe mode: existing AGENTS.md, CLAUDE.md, .agents/project-learnings.md, and .agents/status.md are preserved."
-  echo "Commands ready: /codeguard init | harden | fix | guard | learn | audit | discover | recap | status"
+  echo "Commands ready: /bastion init | harden | fix | guard | learn | audit | discover | recap | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"
   install_skill_to_dir "$HOME/.claude/skills/$SKILL_NAME"
-  install_file ".claude/commands/codeguard.md" "$HOME/.claude/commands/codeguard.md" "true"
+  install_file ".claude/commands/bastion.md" "$HOME/.claude/commands/bastion.md" "true"
   echo ""
-  echo "Done! Installed CodeGuard globally for Antigravity and Claude Code (/codeguard <cmd>)."
+  echo "Done! Installed Bastion globally for Antigravity and Claude Code (/bastion <cmd>)."
 fi

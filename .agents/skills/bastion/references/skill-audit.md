@@ -27,15 +27,15 @@ Also inspect root instruction files (and recommend `/doctor prompt-audit` if usi
 Use `.agents/project-learnings.md` (Section 5: *Active Skill Map & Combos*) as the lightweight **overseer index** (~10 rows max) so every agent knows which skills exist and how to combine them without loading everything.
 
 ### Composition Rules
-- **Cap active skills at 2–3 per task:** 1 primary **Domain Skill** (owns *how to build X*) + `codeguard` as the **Verification Wrapper** (owns *reproduce -> verify -> Mistake -> Constraint*).
+- **Cap active skills at 2–3 per task:** 1 primary **Domain Skill** (owns *how to build X*) + `bastion` as the **Verification Wrapper** (owns *reproduce -> verify -> Mistake -> Constraint*).
 - **Phase-gate sequentially:** Load a skill only when entering its phase (e.g., `schema-skill` for migration -> `ui-skill` for component -> `verify` gate).
 - **Precedence on conflict:**
   1. Deterministic repo checks (types, linters, tests)
   2. Repo-specific domain skills & `.agents/project-learnings.md`
-  3. Generic/global skills (`codeguard` defaults)
+  3. Generic/global skills (`bastion` defaults)
 - **Single source of truth:** Keep canonical skills in `.agents/skills/` and sync (or symlink) to `.claude/skills/` so Antigravity and Claude Code never drift.
 
-## 4. Skill Discovery & Vetting (`/codeguard discover [goal]`)
+## 4. Skill Discovery & Vetting (`/bastion discover [goal]`)
 Find high-value external skills that genuinely fit this repo—never install blindly.
 
 1. **Gap Analysis First:** Check the repo's real stack (`package.json`, `pyproject.toml`, etc.) and `.agents/project-learnings.md` (Section 5). Skip anything already covered by an installed skill, MCP server, or linter.

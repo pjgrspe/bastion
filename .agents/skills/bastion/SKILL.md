@@ -1,25 +1,25 @@
 ---
-name: codeguard
+name: bastion
 description: >-
   Deterministic engineering guardrails, verification loops, skill auditing, and
-  safe per-project self-learning. Use ONLY for /codeguard commands or when
+  safe per-project self-learning. Use ONLY for /bastion commands or when
   bootstrapping, hardening a repo, promoting a mistake to a rule, or running a
   non-trivial multi-step code change.
 ---
 
-# CodeGuard Engineering Playbook
+# Bastion Engineering Playbook
 
-## Commands (`/codeguard <cmd>`)
+## Commands (`/bastion <cmd>`)
 Route user commands directly to one mode without asking:
-- `/codeguard init` → **Mode A** (Bootstrap new repo)
-- `/codeguard harden` → **Mode B** (Harden existing repo incrementally)
-- `/codeguard fix [bug]` → **Mode C** (Reproduce-first bug fix & verify loop)
-- `/codeguard guard [mistake]` → **Mode D** (Promote mistake to permanent check)
-- `/codeguard learn [note]` → **Mode E** (Discover profile or safely log learning)
-- `/codeguard audit` → **Mode F** (Audit installed skills & build Skill Map)
-- `/codeguard discover [goal]` → **Mode F** (Search & vet external skills/repos for this project)
-- `/codeguard recap` → Update `.agents/status.md` (State, Last Recap, Current Plan, Blockers) from recent git commits + verify result
-- `/codeguard status` → Read-only summary of `.agents/status.md` & `.agents/project-learnings.md`
+- `/bastion init` → **Mode A** (Bootstrap new repo)
+- `/bastion harden` → **Mode B** (Harden existing repo incrementally)
+- `/bastion fix [bug]` → **Mode C** (Reproduce-first bug fix & verify loop)
+- `/bastion guard [mistake]` → **Mode D** (Promote mistake to permanent check)
+- `/bastion learn [note]` → **Mode E** (Discover profile or safely log learning)
+- `/bastion audit` → **Mode F** (Audit installed skills & build Skill Map)
+- `/bastion discover [goal]` → **Mode F** (Search & vet external skills/repos for this project)
+- `/bastion recap` → Update `.agents/status.md` (State, Last Recap, Current Plan, Blockers) from recent git commits + verify result
+- `/bastion status` → Read-only summary of `.agents/status.md` & `.agents/project-learnings.md`
 
 ## Token & Context Rules (Read First)
 - **Skip this skill** for simple Q&A or trivial 1-file edits covered by `AGENTS.md`.
@@ -74,5 +74,5 @@ Store repo-specific memory in `.agents/project-learnings.md`—never mutate `SKI
 Load [skill-audit.md](./references/skill-audit.md) when auditing installed skills or designing multi-skill combos:
 1. **Audit (read-only first):** Scan `.agents/skills/`, `.claude/skills/`, and root `AGENTS.md`/`CLAUDE.md` to flag stale/overlapping/bloated skills, ALL-CAPS shouting, or discoverable noise (also suggest `/doctor prompt-audit` in Claude Code). Never delete or edit existing skills without user approval.
 2. **Overseer Map:** Maintain a compact *Active Skill Map & Combos* table in `.agents/project-learnings.md` (Section 5) listing each active skill's role, trigger, and proven combos.
-3. **Combine cleanly:** Cap at 2–3 skills per task (Domain Skill builds, `codeguard` verifies); load sequentially by phase; repo-specific skills override generic defaults on conflict.
-4. **Discover & vet (`/codeguard discover`):** Identify real capability gaps from the repo, search reputable skill registries/GitHub repos, vet for security + token hygiene, and propose the top 1–3 matches—never auto-install without user approval.
+3. **Combine cleanly:** Cap at 2–3 skills per task (Domain Skill builds, `bastion` verifies); load sequentially by phase; repo-specific skills override generic defaults on conflict.
+4. **Discover & vet (`/bastion discover`):** Identify real capability gaps from the repo, search reputable skill registries/GitHub repos, vet for security + token hygiene, and propose the top 1–3 matches—never auto-install without user approval.

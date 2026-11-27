@@ -19,4 +19,4 @@
 ## 5. Active Skill Map & Combos (Overseer Index)
 | Skill / Combo | Role & When to Use | Precedence / Notes |
 | :--- | :--- | :--- |
-| `codeguard` | Verification wrapper, guardrails, `/codeguard` commands | Runs around domain skills |
+| `bastion` | Verification wrapper, guardrails, `/bastion` commands | Runs around domain skills |

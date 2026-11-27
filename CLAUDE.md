@@ -1,3 +1,3 @@
 @AGENTS.md
 
-Skill path: `.agents/skills/codeguard/SKILL.md` (or `.claude/skills/codeguard/SKILL.md`).
+Skill path: `.agents/skills/bastion/SKILL.md` (or `.claude/skills/bastion/SKILL.md`).
