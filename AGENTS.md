@@ -1,46 +1,27 @@
-# Engineering Operating Rules (Anti-Slop Standard)
+# Engineering Rules (Anti-Slop Standard)
 
-These rules apply to all coding agents working in this repository (Antigravity, Claude Code, Cursor, Codex, etc.).
+Applies to all coding agents (Antigravity, Claude Code, Cursor, Codex).
 
-## 1. The Trust Pyramid (Deterministic First, Prose Last)
+## Trust Pyramid (Strict Order)
+1. **Types/Schemas** — make invalid states unrepresentable.
+2. **Linters/Boundaries** — ban footgun APIs and illegal imports mechanically.
+3. **Tests/Runtime Verification** — prove behavior empirically.
+4. **Prose (`AGENTS.md`)** — last resort for pure judgment calls.
 
-Prefer mechanical enforcement over verbal reminders, in this exact order:
+## Core Principles
+- **Prove It Works:** Run real checks (tests, CLI, API, or UI). Never claim done without empirical evidence.
+- **Reproduce First:** For bugs, create a failing test/repro before fixing, then verify it passes.
+- **Root Causes Only:** No band-aids, silent `catch`, retries, `any`, or lint disables.
+- **Mistake → Constraint:** Turn repeatable mistakes into a type, lint rule, boundary check, or regression test.
+- **Small Slices & Behavioral Tests:** Ship verifiable increments; assert observable behavior, not internals.
+- **Isolate Nuance-Heavy APIs:** Keep `useEffect`, raw SQL, unvalidated `fetch`, raw env reads, and timers inside `core/`/`lib/`.
 
-1. **Types & Schemas** — Make invalid states unrepresentable.
-2. **Linters & Architectural Boundaries** — Ban footgun APIs and illegal cross-layer imports automatically.
-3. **Automated & Runtime Verification** — Prove behavior via tests and real execution.
-4. **Prose Rules (`AGENTS.md` / prompts)** — Last resort, only for judgment calls that cannot be checked mechanically.
+## Safe Per-Project Learning
+- Read `.agents/project-learnings.md` if present before code edits (skip for pure Q&A).
+- Log repo-specific quirks or promoted guardrails there via surgical appends only; keep it ≤ 100 lines.
+- **Never overwrite or delete** human-written rules in `AGENTS.md`, `CLAUDE.md`, or `.agents/project-learnings.md`.
 
-## 2. Non-Negotiable Engineering Principles
-
-- **Prove It Works:** Never declare a task done without empirical evidence from running the real code, tests, CLI, API, or UI. "Looks right" or "should work" is not verification.
-- **Reproduce Before Fixing:** For every bug, first write a failing test or minimal reproduction command that demonstrates the bug, then fix it and verify the reproduction passes.
-- **Fix Root Causes:** Do not paper over symptoms with defensive hacks, silent `catch` blocks, retries, or `any`/type casts.
-- **Mistake → Permanent Constraint:** When you (or a previous change) make a repeatable mistake, do not just patch the diff. Add a lint rule, type guard, import boundary, or regression test so that class of mistake cannot recur.
-- **Sequence Work:** Break multi-part changes into small, independently verifiable slices. Run verification after each slice.
-- **Test Behavior, Not Implementation:** Assert observable inputs/outputs and invariants rather than internal private state or brittle mocks.
-- **Avoid Nuance-Heavy APIs in Feature Code:** Keep tricky primitives (e.g., raw `useEffect`, raw SQL strings, unvalidated `fetch`, direct `process.env` access, manual timers) isolated inside a vetted `core/` or `lib/` layer rather than scattered through feature code.
-
-## 3. Mandatory Done Gate
-
-Before finishing any code change, you MUST:
-
-1. Run the project's verification command(s) (typecheck, lint, test, build) and confirm zero errors.
-2. Verify the actual changed behavior at runtime (test output, CLI/HTTP probe, or UI check).
-3. Report **verification artifacts** (commands run + observed results) in your final response, not just a summary of files edited.
-
-## 4. Per-Project Self-Learning (Safe & Non-Destructive)
-
-- Before editing code, read `.agents/project-learnings.md` if it exists to respect this project's specific stack, `verify` command, invariants, and past lessons.
-- When you discover a non-obvious project quirk, receive a correction, or promote a mistake into a lint/type/test guardrail, update `.agents/project-learnings.md` using surgical appends/edits only.
-- **Never overwrite or delete** existing human-written instructions in `AGENTS.md`, `CLAUDE.md`, or `.agents/project-learnings.md`.
-
-## 5. When to Load the `anti-slop-engineering` Skill
-
-Load `.agents/skills/anti-slop-engineering/SKILL.md` whenever you are:
-
-- Bootstrapping guardrails in a **new** project.
-- Auditing or hardening an **existing** codebase against AI slop.
-- Converting a bug or agent mistake into a **permanent deterministic constraint** (lint rule, boundary check, or test).
-- Recording or promoting **project-specific learnings** into `.agents/project-learnings.md`.
-- Running a multi-step bug fix or refactor that needs a strict verification loop.
+## Done Gate & Token Discipline
+- Run the repo's `verify` command (use quiet/summary flags first; inspect full logs only on failure) and confirm zero errors + runtime behavior.
+- Report commands run + observed results. Do not re-run passing checks without new edits.
+- Load `.agents/skills/anti-slop-engineering/SKILL.md` **only** when bootstrapping, hardening a repo, promoting a mistake to a guardrail, or running a non-trivial multi-step change.

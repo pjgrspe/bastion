@@ -58,6 +58,7 @@ Projects vary wildly in stack, legacy code, and conventions. To keep learning **
 - **Separated memory:** Project learnings live in `.agents/project-learnings.md` (created once from template), completely separate from the core `anti-slop-engineering` skill files.
 - **Upgrade-safe:** Re-running `install.ps1` / `install.sh` updates the core skill while **never overwriting** `.agents/project-learnings.md` (even with `-Force` / `--force`) and **never overwriting** existing `AGENTS.md` / `CLAUDE.md` unless you explicitly pass `-Force` / `--force`.
 - **Append-only & Trust-Pyramid-first:** Agents auto-discover your stack/`verify` command on first run, log project quirks safely, and promote repeatable mistakes into deterministic lint/type/test checks rather than bloating prose.
+- **Token-optimized:** Ultra-compact `AGENTS.md` (~380 tokens), lazy-loaded skill references, quiet verification output by default, and a hard ≤ 100-line cap on `.agents/project-learnings.md`.
 
 ---
 
