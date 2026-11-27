@@ -48,6 +48,7 @@ Once installed in a repo (or globally), tell **any** coding agent:
 - **Existing project:** *"Use the `anti-slop-engineering` skill to audit and harden this repo."*
 - **New project:** *"Use the `anti-slop-engineering` skill to bootstrap guardrails for this project."*
 - **After a bug / agent mistake:** *"Use Mode D of `anti-slop-engineering` to turn this mistake into a permanent lint/type/boundary constraint."*
+- **Audit & orchestrate existing skills:** *"Use Mode F of `anti-slop-engineering` to audit our installed skills for staleness/overlap and build our Skill Map."*
 
 ---
 
@@ -68,7 +69,8 @@ Projects vary wildly in stack, legacy code, and conventions. To keep learning **
 | :--- | :--- | :--- |
 | `AGENTS.md` | Lean, always-on operating rules (Trust Pyramid, Prove It Works, Mistake → Constraint, Safe Self-Learning, Done Gate) | Antigravity, Cursor, Codex, OpenCode |
 | `CLAUDE.md` | Thin `@AGENTS.md` pointer so Claude Code reads the exact same source of truth | Claude Code |
-| `.agents/skills/anti-slop-engineering/SKILL.md` | 5-mode playbook (Bootstrap, Harden Existing, Daily Verify Loop, Mistake → Constraint, Safe Self-Learn) | Antigravity, Claude Code, Cursor, Codex |
+| `.agents/skills/anti-slop-engineering/SKILL.md` | 6-mode playbook (Bootstrap, Harden, Daily Verify, Mistake → Constraint, Safe Self-Learn, Skill Audit & Orchestration) | Antigravity, Claude Code, Cursor, Codex |
 | `.agents/skills/anti-slop-engineering/references/stack-guardrails.md` | Copy-pasteable TypeScript/React, Python, and high-criticality guardrail checklists | Loaded on demand by `SKILL.md` |
 | `.agents/skills/anti-slop-engineering/references/project-learnings-template.md` | Template used to initialize `.agents/project-learnings.md` once per repo | Installer & `SKILL.md` Mode E |
+| `.agents/skills/anti-slop-engineering/references/skill-audit.md` | Non-destructive skill health audit & multi-skill composition rules | Loaded on demand by `SKILL.md` Mode F |
 | `install.ps1` / `install.sh` | Safe, non-destructive project or global installers | Windows / macOS / Linux |

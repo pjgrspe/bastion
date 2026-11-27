@@ -10,7 +10,7 @@ description: >-
 
 ## Token & Context Rules (Read First)
 - **Skip this skill** for simple Q&A or trivial 1-file edits covered by `AGENTS.md`.
-- **Lazy-load references:** Only open [stack-guardrails.md](./references/stack-guardrails.md) in Mode A/B/D, and [project-learnings-template.md](./references/project-learnings-template.md) when creating `.agents/project-learnings.md`.
+- **Lazy-load references:** Open [stack-guardrails.md](./references/stack-guardrails.md) only in Mode A/B/D, [project-learnings-template.md](./references/project-learnings-template.md) only when creating `.agents/project-learnings.md`, and [skill-audit.md](./references/skill-audit.md) only in Mode F.
 - **Read `.agents/project-learnings.md` once** (if present) before editing.
 - **Quiet verification:** Run tests/linters with concise output (`-q`, `--silent`, `--reporter=dot`) first; inspect verbose logs only on failure. Never re-run passing checks without new edits.
 
@@ -54,3 +54,9 @@ Store repo-specific memory in `.agents/project-learnings.md`—never mutate `SKI
 3. **Promote first:** Prefer adding a mechanical check (Mode D) + a 1-row log in Section 3 over prose.
 4. **Hard size cap (≤ 100 lines):** 1-line bullets only; deduplicate before adding; delete prose reminders once enforced by a linter/type/test.
 5. **Safe config changes:** Updating `.agents/project-learnings.md` with verified facts is safe automatically; broader legacy linter/compiler changes must use Mode B scoped overrides and pass `verify`.
+
+### Mode F — Skill Audit & Orchestration (Overseer)
+Load [skill-audit.md](./references/skill-audit.md) when auditing installed skills or designing multi-skill combos:
+1. **Audit (read-only first):** Scan `.agents/skills/` and `.claude/skills/` frontmatter against live repo files/scripts to flag stale, overlapping, drifted, or bloated skills. Never delete or edit existing skills without user approval.
+2. **Overseer Map:** Maintain a compact *Active Skill Map & Combos* table in `.agents/project-learnings.md` (Section 5) listing each active skill's role, trigger, and proven combos.
+3. **Combine cleanly:** Cap at 2–3 skills per task (Domain Skill builds, `anti-slop-engineering` verifies); load sequentially by phase; repo-specific skills override generic defaults on conflict.

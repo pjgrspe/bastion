@@ -18,3 +18,8 @@
 
 ## 4. Candidates Pending Promotion
 - _(none yet)_
+
+## 5. Active Skill Map & Combos (Overseer Index)
+| Skill / Combo | Role & When to Use | Precedence / Notes |
+| :--- | :--- | :--- |
+| `anti-slop-engineering` | Verification wrapper, guardrails, Mode A–F | Runs around domain skills |

@@ -14,7 +14,8 @@ $SkillName = "anti-slop-engineering"
 $SkillFiles = @(
     "SKILL.md",
     "references/stack-guardrails.md",
-    "references/project-learnings-template.md"
+    "references/project-learnings-template.md",
+    "references/skill-audit.md"
 )
 
 $LocalRoot = if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot "AGENTS.md"))) {
