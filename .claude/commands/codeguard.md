@@ -1,9 +1,9 @@
 ---
-description: Run Anti-Slop Engineering workflows (init, harden, fix, guard, learn, audit, discover, recap, status)
+description: Run CodeGuard engineering workflows (init, harden, fix, guard, learn, audit, discover, recap, status)
 argument-hint: <init|harden|fix|guard|learn|audit|discover|recap|status> [details]
 ---
 
-Load `.agents/skills/anti-slop-engineering/SKILL.md` (or `.claude/skills/anti-slop-engineering/SKILL.md` / `~/.claude/skills/anti-slop-engineering/SKILL.md`) and execute the subcommand requested in `$ARGUMENTS`:
+Load `.agents/skills/codeguard/SKILL.md` (or `.claude/skills/codeguard/SKILL.md` / `~/.claude/skills/codeguard/SKILL.md`) and execute the subcommand requested in `$ARGUMENTS`:
 
 - `init` -> Mode A (Bootstrap new project)
 - `harden` -> Mode B (Harden existing project incrementally)

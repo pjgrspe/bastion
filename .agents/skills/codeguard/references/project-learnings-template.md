@@ -19,4 +19,4 @@
 ## 5. Active Skill Map & Combos (Overseer Index)
 | Skill / Combo | Role & When to Use | Precedence / Notes |
 | :--- | :--- | :--- |
-| `anti-slop-engineering` | Verification wrapper, guardrails, `/anti-slop` commands | Runs around domain skills |
+| `codeguard` | Verification wrapper, guardrails, `/codeguard` commands | Runs around domain skills |

@@ -1,3 +1,3 @@
 @AGENTS.md
 
-Skill path: `.agents/skills/anti-slop-engineering/SKILL.md` (or `.claude/skills/anti-slop-engineering/SKILL.md`).
+Skill path: `.agents/skills/codeguard/SKILL.md` (or `.claude/skills/codeguard/SKILL.md`).

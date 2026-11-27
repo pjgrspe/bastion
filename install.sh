@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_RAW_BASE="https://raw.githubusercontent.com/pjgrspe/anti-slop-kit/main"
-SKILL_NAME="anti-slop-engineering"
+REPO_RAW_BASE="https://raw.githubusercontent.com/pjgrspe/codeguard/main"
+SKILL_NAME="codeguard"
 SCOPE="project"
 TARGET_DIR="$(pwd)"
 FORCE="false"
@@ -55,25 +55,25 @@ install_skill_to_dir() {
   install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$skill_dir/references/status-template.md" "true"
 }
 
-echo "Installing Anti-Slop Kit (scope: $SCOPE)..."
+echo "Installing CodeGuard (scope: $SCOPE)..."
 
 if [[ "$SCOPE" == "project" ]]; then
   install_file "AGENTS.md" "$TARGET_DIR/AGENTS.md" "$FORCE"
   install_file "CLAUDE.md" "$TARGET_DIR/CLAUDE.md" "$FORCE"
   install_skill_to_dir "$TARGET_DIR/.agents/skills/$SKILL_NAME"
   install_skill_to_dir "$TARGET_DIR/.claude/skills/$SKILL_NAME"
-  install_file ".claude/commands/anti-slop.md" "$TARGET_DIR/.claude/commands/anti-slop.md" "true"
+  install_file ".claude/commands/codeguard.md" "$TARGET_DIR/.claude/commands/codeguard.md" "true"
   # Never overwrite project-specific learnings or status, even with --force
   install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$TARGET_DIR/.agents/project-learnings.md" "false"
   install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$TARGET_DIR/.agents/status.md" "false"
   echo ""
-  echo "Done! Installed into $TARGET_DIR"
+  echo "Done! Installed CodeGuard into $TARGET_DIR"
   echo "Safe mode: existing AGENTS.md, CLAUDE.md, .agents/project-learnings.md, and .agents/status.md are preserved."
-  echo "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | recap | status"
+  echo "Commands ready: /codeguard init | harden | fix | guard | learn | audit | discover | recap | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"
   install_skill_to_dir "$HOME/.claude/skills/$SKILL_NAME"
-  install_file ".claude/commands/anti-slop.md" "$HOME/.claude/commands/anti-slop.md" "true"
+  install_file ".claude/commands/codeguard.md" "$HOME/.claude/commands/codeguard.md" "true"
   echo ""
-  echo "Done! Installed globally for Antigravity and Claude Code (/anti-slop <cmd>)."
+  echo "Done! Installed CodeGuard globally for Antigravity and Claude Code (/codeguard <cmd>)."
 fi
