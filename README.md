@@ -6,9 +6,21 @@ A portable, cross-agent rules & skill kit inspired by Lauren Tan's (*"All Code I
 
 ## Quick Install
 
-### 1. Install into the Current Project (New or Existing Repo)
+### Recommended (Corporate / IT-Safe — Clone & Inspect Locally)
 
-Installs `AGENTS.md`, `CLAUDE.md`, `.agents/skills/anti-slop-engineering/`, and `.claude/skills/anti-slop-engineering/` (safely skips existing `AGENTS.md`/`CLAUDE.md` unless `-Force` / `--force` is passed).
+Clone once, then run the local installer against any project (avoids piping remote URLs into `iex`/`bash`, which corporate EDR tools often flag):
+
+```powershell
+git clone https://github.com/pjgrspe/anti-slop-kit.git
+.\anti-slop-kit\install.ps1 -Scope Project -TargetDir "C:\path\to\your-repo"
+```
+
+Or install globally for Antigravity + Claude Code:
+```powershell
+.\anti-slop-kit\install.ps1 -Scope Global
+```
+
+### Quick Remote One-Liners (Personal Machines Only)
 
 **Windows (PowerShell):**
 ```powershell
@@ -20,21 +32,7 @@ irm https://raw.githubusercontent.com/pjgrspe/anti-slop-kit/main/install.ps1 | i
 curl -fsSL https://raw.githubusercontent.com/pjgrspe/anti-slop-kit/main/install.sh | bash
 ```
 
-### 2. Install Globally (Every Project on Your Machine)
-
-Installs the `anti-slop-engineering` skill globally for both **Antigravity** (`~/.gemini/config/skills/`) and **Claude Code** (`~/.claude/skills/`).
-
-**Windows (PowerShell):**
-```powershell
-& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pjgrspe/anti-slop-kit/main/install.ps1))) -Scope Global
-```
-
-**macOS / Linux:**
-```bash
-curl -fsSL https://raw.githubusercontent.com/pjgrspe/anti-slop-kit/main/install.sh | bash -s -- --global
-```
-
-### 3. Via Agent Skills CLI (`skills.sh`)
+### Via Agent Skills CLI (`skills.sh`)
 ```bash
 npx skills add pjgrspe/anti-slop-kit
 ```
