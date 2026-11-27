@@ -18,14 +18,18 @@ This skill encodes a deterministic, evidence-first engineering workflow that wor
 
 ## Choose Your Mode
 
+Before starting any mode, **read `.agents/project-learnings.md` if it exists** so you respect this specific project's stack, `verify` command, architecture, and past lessons.
+
 Identify which workflow matches the current request and execute its steps in order:
 
 1. **Mode A — Bootstrap a New Project:** Setting up guardrails from Day 1.
 2. **Mode B — Harden an Existing Project:** Adding guardrails incrementally without breaking legacy code.
 3. **Mode C — Daily Task & Bug-Fix Loop ("Prove It Works"):** Executing feature work or bug fixes with empirical verification.
 4. **Mode D — Mistake → Permanent Constraint:** Turning any bug, review comment, or agent mistake into an automated guardrail.
+5. **Mode E — Self-Learn & Adapt to This Project:** Safely discovering project-specific patterns and updating `.agents/project-learnings.md` without overwriting existing project rules or human notes.
 
 For stack-specific configs (TypeScript/React/Node, Python, etc.), read [references/stack-guardrails.md](./references/stack-guardrails.md).
+For the per-project memory format, see [references/project-learnings-template.md](./references/project-learnings-template.md).
 
 ---
 
@@ -98,4 +102,34 @@ Whenever a bug escapes, a PR is reverted, or an agent repeats an error, climb *d
 1. Identify the root cause of the mistake.
 2. Add the smallest mechanical check (type, lint rule, boundary rule, or regression test) that would have caught it automatically.
 3. Confirm the new check fails against the broken pattern and passes against the fixed code.
-4. Keep the diff clean and run `verify`.
+4. Log the promoted guardrail in `.agents/project-learnings.md` (Section 3) using **Mode E** safety rules.
+5. Keep the diff clean and run `verify`.
+
+---
+
+## Mode E: Self-Learn & Adapt to This Project (Safe & Non-Destructive)
+
+Every repository has different tools, conventions, legacy constraints, and edge cases. Self-learning lives in **`.agents/project-learnings.md`** (project-local), never by mutating the shared `SKILL.md` or overwriting existing `AGENTS.md` / `CLAUDE.md` files.
+
+### Non-Negotiable Safety Rules
+
+1. **Never clobber existing project files:**
+   - If `AGENTS.md`, `CLAUDE.md`, or `.agents/project-learnings.md` already exist, **only append or make targeted surgical edits**. Never replace the whole file or delete human-written instructions.
+2. **Initialize lazily and safely:**
+   - If `.agents/project-learnings.md` does not exist yet, create it from [references/project-learnings-template.md](./references/project-learnings-template.md) and fill in Section 1 (*Project Profile*) from real inspection of the repo (never guess).
+3. **Promote to deterministic checks first (Trust Pyramid):**
+   - If a newly learned lesson can be enforced by a type, lint rule, import boundary, or test, implement the mechanical check (Mode D) and record a 1-line summary in Section 3 (*Promoted Guardrails*).
+   - Only add prose to Section 2 (*Project-Specific Invariants & Quirks*) or Section 4 (*Open Learning Candidates*) when a mechanical check is not yet practical.
+4. **Anti-bloat hygiene:**
+   - Deduplicate before adding a new bullet.
+   - When an item in Section 4 gets promoted to a real lint/type/test check, move it to Section 3 and delete the prose reminder so the file stays short and high-signal.
+   - Never log one-off typos, generic language trivia, or raw terminal dumps.
+5. **Confirm before risky config mutations:**
+   - Updating `.agents/project-learnings.md` with verified facts is safe to do automatically after a task.
+   - Broad changes to existing repo linter/compiler/CI configs in an unfamiliar legacy repo must use incremental overrides (Mode B) and pass `verify` before finishing.
+
+### When to Trigger Mode E Automatically
+
+- **First time working in a repo:** Discover stack, `verify` command, folder boundaries, and legacy exceptions → populate Section 1 of `.agents/project-learnings.md`.
+- **After hitting a non-obvious project quirk** (e.g., special build order, env setup, Windows/Linux path nuance, custom API wrapper) → append a concise bullet to Section 2.
+- **After fixing a bug or receiving a user correction** → run Mode D to add a mechanical constraint if possible, then log it in Section 3 (or Section 4 if not yet mechanizable).

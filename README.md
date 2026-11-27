@@ -51,12 +51,23 @@ Once installed in a repo (or globally), tell **any** coding agent:
 
 ---
 
+## How Safe Self-Learning Works
+
+Projects vary wildly in stack, legacy code, and conventions. To keep learning **project-specific and non-destructive**:
+
+- **Separated memory:** Project learnings live in `.agents/project-learnings.md` (created once from template), completely separate from the core `anti-slop-engineering` skill files.
+- **Upgrade-safe:** Re-running `install.ps1` / `install.sh` updates the core skill while **never overwriting** `.agents/project-learnings.md` (even with `-Force` / `--force`) and **never overwriting** existing `AGENTS.md` / `CLAUDE.md` unless you explicitly pass `-Force` / `--force`.
+- **Append-only & Trust-Pyramid-first:** Agents auto-discover your stack/`verify` command on first run, log project quirks safely, and promote repeatable mistakes into deterministic lint/type/test checks rather than bloating prose.
+
+---
+
 ## What's Inside
 
 | File | Purpose | Used By |
 | :--- | :--- | :--- |
-| `AGENTS.md` | Lean, always-on operating rules (Trust Pyramid, Prove It Works, Mistake → Constraint, Done Gate) | Antigravity, Cursor, Codex, OpenCode |
+| `AGENTS.md` | Lean, always-on operating rules (Trust Pyramid, Prove It Works, Mistake → Constraint, Safe Self-Learning, Done Gate) | Antigravity, Cursor, Codex, OpenCode |
 | `CLAUDE.md` | Thin `@AGENTS.md` pointer so Claude Code reads the exact same source of truth | Claude Code |
-| `.agents/skills/anti-slop-engineering/SKILL.md` | 4-mode playbook (Bootstrap, Harden Existing, Daily Verify Loop, Mistake → Constraint) | Antigravity, Claude Code, Cursor, Codex |
+| `.agents/skills/anti-slop-engineering/SKILL.md` | 5-mode playbook (Bootstrap, Harden Existing, Daily Verify Loop, Mistake → Constraint, Safe Self-Learn) | Antigravity, Claude Code, Cursor, Codex |
 | `.agents/skills/anti-slop-engineering/references/stack-guardrails.md` | Copy-pasteable TypeScript/React, Python, and high-criticality guardrail checklists | Loaded on demand by `SKILL.md` |
-| `install.ps1` / `install.sh` | One-command project or global installers | Windows / macOS / Linux |
+| `.agents/skills/anti-slop-engineering/references/project-learnings-template.md` | Template used to initialize `.agents/project-learnings.md` once per repo | Installer & `SKILL.md` Mode E |
+| `install.ps1` / `install.sh` | Safe, non-destructive project or global installers | Windows / macOS / Linux |

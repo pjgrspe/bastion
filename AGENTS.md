@@ -29,11 +29,18 @@ Before finishing any code change, you MUST:
 2. Verify the actual changed behavior at runtime (test output, CLI/HTTP probe, or UI check).
 3. Report **verification artifacts** (commands run + observed results) in your final response, not just a summary of files edited.
 
-## 4. When to Load the `anti-slop-engineering` Skill
+## 4. Per-Project Self-Learning (Safe & Non-Destructive)
+
+- Before editing code, read `.agents/project-learnings.md` if it exists to respect this project's specific stack, `verify` command, invariants, and past lessons.
+- When you discover a non-obvious project quirk, receive a correction, or promote a mistake into a lint/type/test guardrail, update `.agents/project-learnings.md` using surgical appends/edits only.
+- **Never overwrite or delete** existing human-written instructions in `AGENTS.md`, `CLAUDE.md`, or `.agents/project-learnings.md`.
+
+## 5. When to Load the `anti-slop-engineering` Skill
 
 Load `.agents/skills/anti-slop-engineering/SKILL.md` whenever you are:
 
 - Bootstrapping guardrails in a **new** project.
 - Auditing or hardening an **existing** codebase against AI slop.
 - Converting a bug or agent mistake into a **permanent deterministic constraint** (lint rule, boundary check, or test).
+- Recording or promoting **project-specific learnings** into `.agents/project-learnings.md`.
 - Running a multi-step bug fix or refactor that needs a strict verification loop.

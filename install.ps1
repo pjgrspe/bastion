@@ -13,7 +13,8 @@ $RepoRawBase = "https://raw.githubusercontent.com/pjgrspe/anti-slop-kit/main"
 $SkillName = "anti-slop-engineering"
 $SkillFiles = @(
     "SKILL.md",
-    "references/stack-guardrails.md"
+    "references/stack-guardrails.md",
+    "references/project-learnings-template.md"
 )
 
 $LocalRoot = if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot "AGENTS.md"))) {
@@ -71,8 +72,13 @@ if ($Scope -eq "Project") {
     Install-SkillToDir -SkillRootDir (Join-Path $resolvedTarget ".agents\skills\$SkillName")
     Install-SkillToDir -SkillRootDir (Join-Path $resolvedTarget ".claude\skills\$SkillName")
 
+    # Never overwrite project-specific learnings, even with -Force
+    $learningsPath = Join-Path $resolvedTarget ".agents\project-learnings.md"
+    Install-KitFile -RepoRelativePath ".agents/skills/$SkillName/references/project-learnings-template.md" -DestinationPath $learningsPath -AllowOverwrite $false
+
     Write-Host ""
     Write-Host "Done! Installed into $resolvedTarget" -ForegroundColor Cyan
+    Write-Host "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents\project-learnings.md are preserved."
     Write-Host "Next: Ask your agent to use the 'anti-slop-engineering' skill to audit/harden or bootstrap this repo."
 } else {
     $agySkillDir = Join-Path $HOME ".gemini\config\skills\$SkillName"

@@ -49,6 +49,7 @@ install_skill_to_dir() {
   local skill_dir="$1"
   install_file ".agents/skills/$SKILL_NAME/SKILL.md" "$skill_dir/SKILL.md" "true"
   install_file ".agents/skills/$SKILL_NAME/references/stack-guardrails.md" "$skill_dir/references/stack-guardrails.md" "true"
+  install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$skill_dir/references/project-learnings-template.md" "true"
 }
 
 echo "Installing Anti-Slop Kit (scope: $SCOPE)..."
@@ -58,8 +59,11 @@ if [[ "$SCOPE" == "project" ]]; then
   install_file "CLAUDE.md" "$TARGET_DIR/CLAUDE.md" "$FORCE"
   install_skill_to_dir "$TARGET_DIR/.agents/skills/$SKILL_NAME"
   install_skill_to_dir "$TARGET_DIR/.claude/skills/$SKILL_NAME"
+  # Never overwrite project-specific learnings, even with --force
+  install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$TARGET_DIR/.agents/project-learnings.md" "false"
   echo ""
   echo "Done! Installed into $TARGET_DIR"
+  echo "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents/project-learnings.md are preserved."
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"
   install_skill_to_dir "$HOME/.claude/skills/$SKILL_NAME"
