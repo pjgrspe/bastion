@@ -20,7 +20,7 @@ Route user commands directly to one mode without asking:
 
 ## Token & Context Rules (Read First)
 - **Skip this skill** for simple Q&A or trivial 1-file edits covered by `AGENTS.md`.
-- **Lazy-load references:** Open [stack-guardrails.md](./references/stack-guardrails.md) only in Mode A/B/D, [project-learnings-template.md](./references/project-learnings-template.md) only when creating `.agents/project-learnings.md`, and [skill-audit.md](./references/skill-audit.md) only in Mode F.
+- **Lazy-load references:** Open [stack-guardrails.md](./references/stack-guardrails.md) only in Mode A/B/D, [claude-harness.md](./references/claude-harness.md) only when configuring Claude Code deny rules/hooks in Mode A/B, [project-learnings-template.md](./references/project-learnings-template.md) only when creating `.agents/project-learnings.md`, and [skill-audit.md](./references/skill-audit.md) only in Mode F.
 - **Read `.agents/project-learnings.md` once** (if present) before editing.
 - **Quiet verification:** Run tests/linters with concise output (`-q`, `--silent`, `--reporter=dot`) first; inspect verbose logs only on failure. Never re-run passing checks without new edits.
 
@@ -31,14 +31,16 @@ Route user commands directly to one mode without asking:
 2. Enable strict static typing (no implicit `any`, unchecked nulls, or silent escapes).
 3. Separate `core/` (primitives), `domain/` (logic), `ui/`/`api/` (entry points) and enforce import boundaries via linter.
 4. Wrap footgun APIs (`useEffect`, raw SQL, raw `fetch`, env vars) in `core/` and lint-ban direct use elsewhere.
-5. Prove the gate catches an intentional violation, revert it, and confirm `verify` passes.
+5. *(Optional, Claude Code)* Wire `permissions.deny` + `exit code 2` `verify` hook from [claude-harness.md](./references/claude-harness.md).
+6. Prove the gate catches an intentional violation, revert it, and confirm `verify` passes.
 
 ### Mode B — Harden Existing Project (Incremental Ratchet)
 1. Inspect existing scripts, linters, tests, and recent bug/revert commits.
 2. Wire existing checks into a single `verify` command.
 3. Target top 3–5 recurring failure modes with lint/type/boundary rules.
 4. Apply strictness to **new/touched files** using scoped baselines/overrides for legacy paths—never disable rules globally.
-5. Run `verify` and confirm green.
+5. *(Optional, Claude Code)* Add `permissions.deny` + `exit code 2` `verify` hook from [claude-harness.md](./references/claude-harness.md).
+6. Run `verify` and confirm green.
 
 ### Mode C — Daily Task & Bug-Fix Loop
 1. Read relevant files and conventions first.
@@ -67,6 +69,6 @@ Store repo-specific memory in `.agents/project-learnings.md`—never mutate `SKI
 
 ### Mode F — Skill Audit & Orchestration (Overseer)
 Load [skill-audit.md](./references/skill-audit.md) when auditing installed skills or designing multi-skill combos:
-1. **Audit (read-only first):** Scan `.agents/skills/` and `.claude/skills/` frontmatter against live repo files/scripts to flag stale, overlapping, drifted, or bloated skills. Never delete or edit existing skills without user approval.
+1. **Audit (read-only first):** Scan `.agents/skills/`, `.claude/skills/`, and root `AGENTS.md`/`CLAUDE.md` to flag stale/overlapping/bloated skills, ALL-CAPS shouting, or discoverable noise (also suggest `/doctor prompt-audit` in Claude Code). Never delete or edit existing skills without user approval.
 2. **Overseer Map:** Maintain a compact *Active Skill Map & Combos* table in `.agents/project-learnings.md` (Section 5) listing each active skill's role, trigger, and proven combos.
 3. **Combine cleanly:** Cap at 2–3 skills per task (Domain Skill builds, `anti-slop-engineering` verifies); load sequentially by phase; repo-specific skills override generic defaults on conflict.

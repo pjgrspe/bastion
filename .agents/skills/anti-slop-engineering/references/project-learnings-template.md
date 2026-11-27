@@ -1,15 +1,12 @@
 # Project Learnings (Max 100 Lines — Surgical Edits Only)
 
-> Never overwrite or delete human-written notes. Keep bullets 1 line. Promote repeatable items to lint/type/test checks and prune the prose reminder.
+> Never overwrite or delete human-written notes. Do NOT record facts easily discovered from `package.json`, `pyproject.toml`, or `ls`. Keep bullets 1 line; promote repeatable items to lint/type/test checks and prune prose.
 
-## 1. Profile
-- **Stack:** _(auto-discovered)_
-- **Runtime / Pkg Mgr:** _(e.g., pnpm, uv, dotnet)_
-- **Verify Cmd:** _(exact single command)_
-- **Layers:** _(e.g., `core/` -> `domain/` -> `features/` -> `ui/`)_
-- **Legacy Baselines:** _(paths with temporary exceptions)_
+## 1. Non-Discoverable Profile
+- **Verify Cmd:** _(exact quiet single command)_
+- **Legacy Baselines:** _(paths with temporary lint/type exceptions)_
 
-## 2. Repo-Specific Quirks & Invariants
+## 2. Repo-Specific Quirks & External Constraints
 - _(none yet)_
 
 ## 3. Promoted Guardrails (Mistake -> Mechanical Check)
@@ -22,4 +19,4 @@
 ## 5. Active Skill Map & Combos (Overseer Index)
 | Skill / Combo | Role & When to Use | Precedence / Notes |
 | :--- | :--- | :--- |
-| `anti-slop-engineering` | Verification wrapper, guardrails, Mode A–F | Runs around domain skills |
+| `anti-slop-engineering` | Verification wrapper, guardrails, `/anti-slop` commands | Runs around domain skills |

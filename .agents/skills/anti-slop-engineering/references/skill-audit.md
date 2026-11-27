@@ -17,7 +17,13 @@ Present a concise table before touching any existing skill:
 
 Wait for user approval before archiving, merging, or editing any third-party/existing skill.
 
-## 2. Skill Overseer & Composition Architecture
+## 2. Instruction File Audit (`AGENTS.md` / `CLAUDE.md`)
+Also inspect root instruction files (and recommend `/doctor prompt-audit` if using Claude Code):
+- **Remove shouting:** Replace ALL-CAPS (`IMPORTANT`, `NEVER`, `!!!`) with calm, plain imperatives.
+- **Remove discoverable noise:** Delete manual directory trees, package lists, or framework boilerplate agents can read directly from the repo.
+- **Scope path-specific rules:** Move rules that apply only to certain folders into path-scoped `.claude/rules/*.md` (or directory-local `AGENTS.md`) instead of loading them globally.
+
+## 3. Skill Overseer & Composition Architecture
 Use `.agents/project-learnings.md` (Section 5: *Active Skill Map & Combos*) as the lightweight **overseer index** (~10 rows max) so every agent knows which skills exist and how to combine them without loading everything.
 
 ### Composition Rules

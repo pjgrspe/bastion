@@ -77,5 +77,6 @@ Projects vary wildly in stack, legacy code, and conventions. To keep learning **
 | `.agents/skills/anti-slop-engineering/SKILL.md` | 6-mode playbook (Bootstrap, Harden, Daily Verify, Mistake → Constraint, Safe Self-Learn, Skill Audit & Orchestration) | Antigravity, Claude Code, Cursor, Codex |
 | `.agents/skills/anti-slop-engineering/references/stack-guardrails.md` | Copy-pasteable TypeScript/React, Python, and high-criticality guardrail checklists | Loaded on demand by `SKILL.md` |
 | `.agents/skills/anti-slop-engineering/references/project-learnings-template.md` | Template used to initialize `.agents/project-learnings.md` once per repo | Installer & `SKILL.md` Mode E |
-| `.agents/skills/anti-slop-engineering/references/skill-audit.md` | Non-destructive skill health audit & multi-skill composition rules | Loaded on demand by `SKILL.md` Mode F |
+| `.agents/skills/anti-slop-engineering/references/skill-audit.md` | Non-destructive skill + instruction audit (`AGENTS.md`/`CLAUDE.md`) & multi-skill composition rules | Loaded on demand by `SKILL.md` Mode F |
+| `.agents/skills/anti-slop-engineering/references/claude-harness.md` | Claude Code `permissions.deny` rules & blocking `exit code 2` verification hook templates | Loaded on demand by `SKILL.md` Mode A/B |
 | `install.ps1` / `install.sh` | Safe, non-destructive project or global installers | Windows / macOS / Linux |
