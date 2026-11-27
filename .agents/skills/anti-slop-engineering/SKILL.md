@@ -16,6 +16,7 @@ Route user commands directly to one mode without asking:
 - `/anti-slop guard [mistake]` → **Mode D** (Promote mistake to permanent check)
 - `/anti-slop learn [note]` → **Mode E** (Discover profile or safely log learning)
 - `/anti-slop audit` → **Mode F** (Audit installed skills & build Skill Map)
+- `/anti-slop discover [goal]` → **Mode F** (Search & vet external skills/repos for this project)
 - `/anti-slop status` → Read-only summary of `.agents/project-learnings.md`
 
 ## Token & Context Rules (Read First)
@@ -72,3 +73,4 @@ Load [skill-audit.md](./references/skill-audit.md) when auditing installed skill
 1. **Audit (read-only first):** Scan `.agents/skills/`, `.claude/skills/`, and root `AGENTS.md`/`CLAUDE.md` to flag stale/overlapping/bloated skills, ALL-CAPS shouting, or discoverable noise (also suggest `/doctor prompt-audit` in Claude Code). Never delete or edit existing skills without user approval.
 2. **Overseer Map:** Maintain a compact *Active Skill Map & Combos* table in `.agents/project-learnings.md` (Section 5) listing each active skill's role, trigger, and proven combos.
 3. **Combine cleanly:** Cap at 2–3 skills per task (Domain Skill builds, `anti-slop-engineering` verifies); load sequentially by phase; repo-specific skills override generic defaults on conflict.
+4. **Discover & vet (`/anti-slop discover`):** Identify real capability gaps from the repo, search reputable skill registries/GitHub repos, vet for security + token hygiene, and propose the top 1–3 matches—never auto-install without user approval.

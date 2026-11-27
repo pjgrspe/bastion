@@ -82,7 +82,7 @@ if ($Scope -eq "Project") {
     Write-Host ""
     Write-Host "Done! Installed into $resolvedTarget" -ForegroundColor Cyan
     Write-Host "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents\project-learnings.md are preserved."
-    Write-Host "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | status"
+    Write-Host "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | status"
 } else {
     $agySkillDir = Join-Path $HOME ".gemini\config\skills\$SkillName"
     $claudeSkillDir = Join-Path $HOME ".claude\skills\$SkillName"

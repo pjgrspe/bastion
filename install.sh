@@ -67,7 +67,7 @@ if [[ "$SCOPE" == "project" ]]; then
   echo ""
   echo "Done! Installed into $TARGET_DIR"
   echo "Safe mode: existing AGENTS.md, CLAUDE.md, and .agents/project-learnings.md are preserved."
-  echo "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | status"
+  echo "Commands ready: /anti-slop init | harden | fix | guard | learn | audit | discover | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"
   install_skill_to_dir "$HOME/.claude/skills/$SKILL_NAME"
