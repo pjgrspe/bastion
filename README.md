@@ -52,14 +52,14 @@ Works as a native slash command in **Claude Code** (`.claude/commands/bastion.md
 | `/bastion learn [note]` | Auto-discover repo profile or safely append a learning to `.agents/project-learnings.md` |
 | `/bastion audit` | Non-destructive audit of installed skills + `AGENTS.md`/`CLAUDE.md` + build the Skill Map |
 | `/bastion discover [goal]` | Search & vet reputable skill repos/registries for this project's stack & goals (approval-gated) |
-| `/bastion recap` | Update `.agents/status.md` (State, Last Recap, Current Plan, Blockers) for Agent Manager |
-| `/bastion status` | Read-only summary of your repo's `.agents/status.md` and `.agents/project-learnings.md` |
+| `/bastion recap` | *(Optional)* Create or update `.agents/status.md` (manual State, Recap, Plan, or Blockers override) |
+| `/bastion status` | Read-only summary of `.agents/project-learnings.md` (and optional `.agents/status.md`, if present) |
 
 ---
 
 ## How Safe Self-Learning Works
 
-- **Separated memory:** Project learnings live in `.agents/project-learnings.md` and status in `.agents/status.md` (created once from templates), separate from the core `bastion` skill files.
+- **Separated memory:** Project learnings live in `.agents/project-learnings.md`, separate from the core `bastion` skill files. `.agents/status.md` is strictly **optional**—use it only if you want to pin manual blockers, mark `Waiting on Review` without an open PR, or maintain a custom recap/plan override.
 - **Upgrade-safe:** Re-running `install.ps1` / `install.sh` updates the core skill while **never overwriting** `.agents/project-learnings.md` or `.agents/status.md` (even with `-Force` / `--force`) and **never overwriting** existing `AGENTS.md` / `CLAUDE.md` unless `-Force` / `--force` is passed.
 - **Token-optimized:** Lean `AGENTS.md` (~470 tokens), lazy-loaded `references/`, quiet verification output, and a hard ≤ 100-line cap on `.agents/project-learnings.md`.
 
@@ -67,4 +67,4 @@ Works as a native slash command in **Claude Code** (`.claude/commands/bastion.md
 
 ## Companion Dashboard
 
-Pair with **[Citadel](https://github.com/pjgrspe/citadel)** for a multi-project Control Center that reads `.agents/status.md`, visualizes commit velocity, and auto-syncs Git recaps across all your repos.
+Pair with **[Citadel](https://github.com/pjgrspe/citadel)** for a multi-project dashboard that works passively out of the box on any Git repo or GitHub project—no `.agents/status.md` or Bastion install required. Citadel derives state, recaps, plans, and activity automatically from Git, GitHub (PRs, CI, issues, milestones), and passive agent sessions (Claude Code, Antigravity), and treats `.agents/status.md` strictly as an optional manual override.

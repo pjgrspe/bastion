@@ -18,8 +18,8 @@ Route user commands directly to one mode without asking:
 - `/bastion learn [note]` → **Mode E** (Discover profile or safely log learning)
 - `/bastion audit` → **Mode F** (Audit installed skills & build Skill Map)
 - `/bastion discover [goal]` → **Mode F** (Search & vet external skills/repos for this project)
-- `/bastion recap` → Update `.agents/status.md` (State, Last Recap, Current Plan, Blockers) from recent git commits + verify result
-- `/bastion status` → Read-only summary of `.agents/status.md` & `.agents/project-learnings.md`
+- `/bastion recap` → *(Optional)* Create or update `.agents/status.md` (manual State, Last Recap, Current Plan, or Blockers override); not required for Citadel to work
+- `/bastion status` → Read-only summary of `.agents/project-learnings.md` (and optional `.agents/status.md`, if present)
 
 ## Token & Context Rules (Read First)
 - **Skip this skill** for simple Q&A or trivial 1-file edits covered by `AGENTS.md`.

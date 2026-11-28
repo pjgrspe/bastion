@@ -63,12 +63,12 @@ if [[ "$SCOPE" == "project" ]]; then
   install_skill_to_dir "$TARGET_DIR/.agents/skills/$SKILL_NAME"
   install_skill_to_dir "$TARGET_DIR/.claude/skills/$SKILL_NAME"
   install_file ".claude/commands/bastion.md" "$TARGET_DIR/.claude/commands/bastion.md" "true"
-  # Never overwrite project-specific learnings or status, even with --force
+  # Never overwrite project-specific learnings, even with --force
   install_file ".agents/skills/$SKILL_NAME/references/project-learnings-template.md" "$TARGET_DIR/.agents/project-learnings.md" "false"
-  install_file ".agents/skills/$SKILL_NAME/references/status-template.md" "$TARGET_DIR/.agents/status.md" "false"
   echo ""
   echo "Done! Installed Bastion into $TARGET_DIR"
-  echo "Safe mode: existing AGENTS.md, CLAUDE.md, .agents/project-learnings.md, and .agents/status.md are preserved."
+  echo "Safe mode: existing AGENTS.md, CLAUDE.md, .agents/project-learnings.md, and any existing .agents/status.md are preserved."
+  echo "Optional: run /bastion recap only if you want a manual .agents/status.md override (Citadel works passively without it)."
   echo "Commands ready: /bastion init | harden | fix | guard | learn | audit | discover | recap | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"

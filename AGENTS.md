@@ -23,6 +23,6 @@ Applies to all coding agents (Antigravity, Claude Code, Cursor, Codex).
 
 ## Done Gate & Token Discipline
 - Run the repo's `verify` command (use quiet/summary flags first; inspect full logs only on failure) and confirm zero errors + runtime behavior.
-- After non-trivial code changes, auto-update `.agents/status.md` (Last Recap + Verify + Plan) if present.
+- `.agents/status.md` is optional (Citadel tracks Git, GitHub, and passive sessions without it); only update it if already present in the repo or when explicitly requested via `/bastion recap`.
 - Report commands run + observed results. Do not re-run passing checks without new edits.
 - Load `.agents/skills/bastion/SKILL.md` **only** for `/bastion <init|harden|fix|guard|learn|audit|discover|recap|status>` commands or non-trivial multi-step changes.
