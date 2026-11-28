@@ -68,7 +68,7 @@ if [[ "$SCOPE" == "project" ]]; then
   echo ""
   echo "Done! Installed Bastion into $TARGET_DIR"
   echo "Safe mode: existing AGENTS.md, CLAUDE.md, .agents/project-learnings.md, and any existing .agents/status.md are preserved."
-  echo "Optional: run /bastion recap only if you want a manual .agents/status.md override (Citadel works passively without it)."
+  echo "Optional: run /bastion recap only if you want a manual .agents/status.md override (Meridian works passively without it)."
   echo "Commands ready: /bastion init | harden | fix | guard | learn | audit | discover | recap | status"
 else
   install_skill_to_dir "$HOME/.gemini/config/skills/$SKILL_NAME"

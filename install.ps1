@@ -83,7 +83,7 @@ if ($Scope -eq "Project") {
     Write-Host ""
     Write-Host "Done! Installed Bastion into $resolvedTarget" -ForegroundColor Cyan
     Write-Host "Safe mode: existing AGENTS.md, CLAUDE.md, .agents\project-learnings.md, and any existing .agents\status.md are preserved."
-    Write-Host "Optional: run /bastion recap only if you want a manual .agents\status.md override (Citadel works passively without it)."
+    Write-Host "Optional: run /bastion recap only if you want a manual .agents\status.md override (Meridian works passively without it)."
     Write-Host "Commands ready: /bastion init | harden | fix | guard | learn | audit | discover | recap | status"
 } else {
     $agySkillDir = Join-Path $HOME ".gemini\config\skills\$SkillName"

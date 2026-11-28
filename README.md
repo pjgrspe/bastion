@@ -67,4 +67,4 @@ Works as a native slash command in **Claude Code** (`.claude/commands/bastion.md
 
 ## Companion Dashboard
 
-Pair with **[Citadel](https://github.com/pjgrspe/citadel)** for a multi-project dashboard that works passively out of the box on any Git repo or GitHub project—no `.agents/status.md` or Bastion install required. Citadel derives state, recaps, plans, and activity automatically from Git, GitHub (PRs, CI, issues, milestones), and passive agent sessions (Claude Code, Antigravity), and treats `.agents/status.md` strictly as an optional manual override.
+Pair with **[Meridian](https://github.com/pjgrspe/citadel)** for a multi-project dashboard that works passively out of the box on any Git repo or GitHub project—no `.agents/status.md` or Bastion install required. Meridian derives state, recaps, plans, and activity automatically from Git, GitHub (PRs, CI, issues, milestones), and passive agent sessions (Claude Code, Antigravity), and treats `.agents/status.md` strictly as an optional manual override.
